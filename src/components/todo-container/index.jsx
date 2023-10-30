@@ -1,21 +1,53 @@
-import React from "react";
+import * as React from "react"
 import Todo from '../todo/index'
+import TodoComposer from '../todoComposer/index'
 
 export default function TodoContainer() {
+    const [todos, setTodos] = React.useState([
+        {   id: 1,
+            label: "Learn React",
+            completed: false,
+        }, {
+            id: 2,
+            label: "Learn Next",
+            completed: false,
+        }, {
+            id: 3,
+            label: "Learn Redux",
+            completed: false,
+        }
+    ])
+
+    const handleUpdateTodo = (updatedTodo) => {
+        const newTodos = todos.map((todo) =>
+            todo.id === updatedTodo.id ? updatedTodo : todo
+        )
+        setTodos(newTodos)
+    }
+
+    const handleDeleteTodo = (id) => {
+        const newTodos = todos.filter((todo) => todo.id !== id)
+        setTodos(newTodos)
+    }
+
+    const handleAddTodo = (newTodo) => {
+        const newTodos = [...todos, newTodo]
+        setTodos(newTodos)
+    }
+
     return (
         <main className="flex flex-col items-center">
-            <div className="flex flex-col space-y-2 h-96 pt-14">
-                <div>
-                    <a href="#" className="underline hover:text-xl">
-                        Add new
-                    </a>
-                </div>
-                <div className="w-96 min-h-full border border-black rounded-lg p-3">
-                    <Todo />
-                </div>
-            </div>
-            
-            
+                <ul className="w-96 min-h-full border border-black rounded-lg p-3 space-y-2">
+                    <TodoComposer handleAddTodo={handleAddTodo} />
+                    {todos.map((todo) => (
+                        <Todo 
+                        key={todo.id}
+                        todo={todo}
+                        handleUpdateTodo={handleUpdateTodo}
+                        handleDeleteTodo={handleDeleteTodo}
+                        />
+                    ))}
+                </ul>     
         </main>
     ) 
 }
