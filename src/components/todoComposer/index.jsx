@@ -20,18 +20,18 @@ export default function TodoComposer({ handleAddTodo }) {
   }
 
   return (
-    <li className="border border-black p-3 rounded-lg bg-slate-500 flex flex-row justify-between">
+    <li className="border border-black p-3 rounded-lg bg-black-700 flex flex-row justify-between">
       <input
         placeholder="Add a new todo"
         type="text"
         value={label}
         onChange={handleUpdateLabel}
-        className="bg-slate-500 w-60"
+        className="bg-black-600 w-60 lg:w-10/12 rounded-lg"
       />
       <button
         disabled={label.length === 0}
         onClick={handleAddTodoClick}
-        className="underline"
+        className="underline border border-primary p-2 lg:py-2 lg:px-4 rounded-lg bg-primary"
       >
         Add Todo
       </button>

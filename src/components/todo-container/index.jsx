@@ -37,7 +37,7 @@ export default function TodoContainer() {
 
     return (
         <main className="flex flex-col items-center">
-                <ul className="w-96 min-h-full border border-black rounded-lg p-3 space-y-2">
+                <ul className="w-96 lg:w-5/12 min-h-full bg-black-500 shadow-xl border-2 border-primary rounded-lg p-3 space-y-2">
                     <TodoComposer handleAddTodo={handleAddTodo} />
                     {todos.map((todo) => (
                         <Todo 
